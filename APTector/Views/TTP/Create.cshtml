@@ -1,0 +1,77 @@
+﻿@model APTector.Models.TTPCreationViewModel
+
+@{
+    ViewBag.Title = "Создать TTP (с привязкой к группе)";
+}
+
+<h2>Создать TTP</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<form method="post" asp-action="Create">
+    <fieldset>
+        <legend>Тактика</legend>
+        <div>
+            <label>Id тактики:</label>
+            <input asp-for="TacticId" />
+        </div>
+        <div>
+            <label>Название тактики:</label>
+            <input asp-for="TacticName" />
+        </div>
+        <div>
+            <label>Matrix Id:</label>
+            <input asp-for="MatrixId" type="number" />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Техника</legend>
+        <div>
+            <label>Id техники:</label>
+            <input asp-for="TechniqueId" />
+        </div>
+        <div>
+            <label>Название техники:</label>
+            <input asp-for="TechniqueName" />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Процедура</legend>
+        <div>
+            <label>Id процедуры:</label>
+            <input asp-for="ProcedureId" />
+        </div>
+        <div>
+            <label>Название процедуры:</label>
+            <input asp-for="ProcedureName" />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Привязка к группе</legend>
+        <div>
+            <label>Id группы:</label>
+            <input asp-for="APTGroupId" type="number" />
+        </div>
+        <!-- Если хотим добавить метрики -->
+        <div>
+            <label>Probability:</label>
+            <input asp-for="Probability" type="number" step="0.01" />
+        </div>
+        <div>
+            <label>Criticality:</label>
+            <input asp-for="Criticality" type="number" step="0.01" />
+        </div>
+        <div>
+            <label>Business Impact:</label>
+            <input asp-for="BusinessImpact" type="number" step="0.01" />
+        </div>
+    </fieldset>
+
+    <button type="submit">Сохранить</button>
+</form>

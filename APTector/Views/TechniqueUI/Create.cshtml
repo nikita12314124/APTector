@@ -1,0 +1,27 @@
+﻿@model APTector.Models.Technique
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewBag.Title = "Create Technique";
+    var tactics = ViewBag.Tactics as List<APTector.Models.Tactic>;
+}
+
+<h2>Create Technique</h2>
+
+<form method="post" asp-action="Create">
+    <div>
+        <label>Technique Id (например, T1059):</label>
+        <input asp-for="Id" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label>Tactic:</label>
+        <select asp-for="TacticId" asp-items="@(new SelectList(tactics, "Id", "Name"))">
+            <option value="">-- Select Tactic --</option>
+        </select>
+    </div>
+    <button type="submit">Save</button>
+</form>

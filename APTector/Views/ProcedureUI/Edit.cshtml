@@ -1,0 +1,27 @@
+﻿@model APTector.Models.Procedure
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewBag.Title = "Edit Procedure";
+    var techniques = ViewBag.Techniques as List<APTector.Models.Technique>;
+}
+
+<h2>Edit Procedure</h2>
+
+<form method="post" asp-action="Edit" asp-route-id="@Model.Id">
+    <div>
+        <label>Procedure Id:</label>
+        <input asp-for="Id" readonly="readonly" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label>Technique:</label>
+        <select asp-for="TechniqueId" asp-items="@(new SelectList(techniques, "Id", "Name"))">
+            <option value="">-- Select Technique --</option>
+        </select>
+    </div>
+    <button type="submit">Save</button>
+</form>

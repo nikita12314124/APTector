@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Назначение процедуры группе";
+}
+
+<h2>Назначить процедуру группе</h2>
+
+<p>
+    <strong>Процедура:</strong> @ViewBag.ProcedureName (@ViewBag.ProcedureId)
+</p>
+
+<form method="post" asp-action="Assign" asp-controller="ProcedureAssignment">
+    <input type="hidden" name="procedureId" value="@ViewBag.ProcedureId" />
+    <div>
+        <label>Группа:</label>
+        <select name="aptGroupId" asp-items="@(ViewBag.AptGroups as SelectList)">
+            <option value="">-- Выберите группу --</option>
+        </select>
+    </div>
+    <div>
+        <label>Probability:</label>
+        <input type="number" step="0.01" name="probability" required />
+    </div>
+    <div>
+        <label>Criticality:</label>
+        <input type="number" step="0.01" name="criticality" required />
+    </div>
+    <div>
+        <label>Business Impact:</label>
+        <input type="number" step="0.01" name="businessImpact" required />
+    </div>
+    <button type="submit">Назначить</button>
+</form>

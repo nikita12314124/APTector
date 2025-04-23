@@ -1,0 +1,41 @@
+﻿@model List<APTector.Models.Matrix>
+
+@{
+    ViewBag.Title = "Навигация";
+}
+
+<h2>Иерархия: Матрицы → Тактики → Техники → Процедуры</h2>
+
+<ul>
+    @foreach (var matrix in Model)
+    {
+        <li>
+            <strong>Матрица:</strong> @matrix.MatrixName
+            <ul>
+                @foreach (var tactic in matrix.Tactics)
+                {
+                    <li>
+                        <strong>Тактика:</strong> @tactic.Name (@tactic.Id)
+                        <ul>
+                            @foreach (var tech in tactic.Techniques)
+                            {
+                                <li>
+                                    <strong>Техника:</strong> @tech.Name (@tech.Id)
+                                    <ul>
+                                        @foreach (var proc in tech.Procedures)
+                                        {
+                                            <li>
+                                                <strong>Процедура:</strong> @proc.Name (@proc.Id)
+                                                | <a asp-controller="ProcedureAssignment" asp-action="Assign" asp-route-procedureId="@proc.Id">Назначить группе</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

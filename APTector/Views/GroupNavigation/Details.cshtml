@@ -1,0 +1,33 @@
+﻿@model APTector.Models.APTGroup
+
+@{
+    ViewBag.Title = "Детали группировки";
+}
+
+<h2>Детали группировки: @Model.Name</h2>
+<p>
+    <strong>Импакт:</strong> @Model.Impact<br />
+    <strong>Описание:</strong> @Model.ShortDescription<br />
+    <strong>Регион:</strong> @Model.Region<br />
+    <strong>Сфера:</strong> @Model.Sector<br />
+</p>
+
+<h3>Назначенные процедуры и TTP</h3>
+@if (Model.APTGroupProcedures.Any())
+{
+    <ul>
+        @foreach (var link in Model.APTGroupProcedures)
+        {
+            <li>
+                <strong>Процедура:</strong> @link.Procedure.Name (@link.Procedure.Id)<br />
+                <strong>Техника:</strong> @link.Procedure.Technique?.Name<br />
+                <strong>Тактика:</strong> @link.Procedure.Technique?.Tactic?.Name<br />
+                <strong>Метрики:</strong> Probability = @link.Probability, Criticality = @link.Criticality, BusinessImpact = @link.BusinessImpact
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Нет назначенных процедур.</p>
+}

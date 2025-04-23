@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Создание корреляционных правил";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Создание корреляционных правил</h2>
+    <form asp-action="Results" method="post">
+        <div class="mb-3">
+            <label for="organizationSector" class="form-label">Сектор организации</label>
+            <input type="text" class="form-control" id="organizationSector" name="organizationSector" placeholder="Например, государственный сектор" required />
+        </div>
+        <div class="mb-3">
+            <label for="organizationRegion" class="form-label">Регион работы организации</label>
+            <input type="text" class="form-control" id="organizationRegion" name="organizationRegion" placeholder="Например, Москва" required />
+        </div>
+        <div class="mb-3">
+            <label for="dataSources" class="form-label">Подключаемые источники</label>
+            <input type="text" class="form-control" id="dataSources" name="dataSources" placeholder="Например, SIEM, IDS, лог сервера" required />
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-custom">Показать рекомендации</button>
+        </div>
+    </form>
+</div>

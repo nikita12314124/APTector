@@ -1,0 +1,27 @@
+﻿@model APTector.Models.Procedure
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewBag.Title = "Create Procedure";
+    var techniques = ViewBag.Techniques as List<APTector.Models.Technique>;
+}
+
+<h2>Create Procedure</h2>
+
+<form method="post" asp-action="Create">
+    <div>
+        <label>Procedure Id (например, PROC-001):</label>
+        <input asp-for="Id" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label>Technique:</label>
+        <select asp-for="TechniqueId" asp-items="@(new SelectList(techniques, "Id", "Name"))">
+            <option value="">-- Select Technique --</option>
+        </select>
+    </div>
+    <button type="submit">Save</button>
+</form>

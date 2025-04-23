@@ -1,0 +1,81 @@
+﻿@model List<APTector.Models.APTGroup>
+@{
+    ViewBag.Title = "Результаты корреляционных правил";
+    var organizationSector = ViewBag.OrganizationSector as string;
+    var organizationRegion = ViewBag.OrganizationRegion as string;
+    var dataSources = ViewBag.DataSources as string;
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Рекомендации по корреляционным правилам</h2>
+    <p class="text-center">
+        <strong>Сектор организации:</strong> @organizationSector <br />
+        <strong>Регион:</strong> @organizationRegion <br />
+        <strong>Подключаемые источники:</strong> @dataSources
+    </p>
+    <hr />
+    @if (Model == null || Model.Count == 0)
+    {
+        <p class="text-center">Нет группировок, соответствующих заданным критериям.</p>
+    }
+    else
+    {
+        foreach (var group in Model)
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    Группировка: @group.Name
+                </div>
+                <div class="card-body">
+                    <p>
+                        <strong>Активность группировки:</strong>
+                        @(group.ActiveSince.HasValue ? $"{group.ActiveSince.Value:yyyy}" : "Неизвестно")
+                        – по данным анализа
+                    </p>
+                    @if (group.APTGroupProcedures != null && group.APTGroupProcedures.Any())
+                    {
+                        foreach (var link in group.APTGroupProcedures)
+                        {
+                            var proc = link.Procedure;
+                            if (proc != null)
+                            {
+                                <div class="mb-3">
+                                    <p><strong>Тактика:</strong> @(proc.Technique?.Tactic?.Name ?? "Не указано")</p>
+                                    <p><strong>Техника:</strong> @(proc.Technique?.Name ?? "Не указано")</p>
+                                    <p><strong>Процедура:</strong> @proc.Name</p>
+                                    <p>
+                                        <strong>Как писать корреляционное правило:</strong> Рекомендуется использовать условие на запуск подозрительных процессов,
+                                        а также анализ сетевых соединений, характерных для данной процедуры.
+                                    </p>
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <p>Нет доступных процедур для этой группировки.</p>
+                    }
+                </div>
+            </div>
+        }
+    }
+    <div class="text-center mb-5">
+        <a href="@Url.Action("Index", "Dashboard")" class="btn btn-secondary btn-custom">Назад на панель управления</a>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .btn-custom {
+            background: linear-gradient(45deg, #8a2be2, #9370DB);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+        }
+        .btn-custom:hover {
+            background: linear-gradient(45deg, #7a1bd1, #8367d0);
+        }
+    </style>
+}

@@ -1,0 +1,17 @@
+﻿@model APTector.Models.Technique
+
+@{
+    ViewBag.Title = "Delete Technique";
+}
+
+<h2>Delete Technique</h2>
+
+<form method="post" asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
+    <p>Are you sure you want to delete this Technique?</p>
+    <p>
+        <strong>@Model.Name</strong>
+        (ID=@Model.Id, TacticId=@Model.TacticId)
+    </p>
+    <button type="submit">Delete</button> |
+    <a asp-action="Index">Back</a>
+</form>

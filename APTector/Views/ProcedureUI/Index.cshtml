@@ -1,0 +1,38 @@
+﻿@model List<APTector.Models.Procedure>
+
+@{
+    ViewBag.Title = "Procedures List";
+}
+
+<h2>Procedures</h2>
+
+<p>
+    <a asp-action="Create">Create New Procedure</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>TechniqueId</th>
+            <th>TechniqueName</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var proc in Model)
+        {
+            <tr>
+                <td>@proc.Id</td>
+                <td>@proc.Name</td>
+                <td>@proc.TechniqueId</td>
+                <td>@proc.Technique?.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@proc.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@proc.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@model List<APTector.Models.APTGroup>
+
+@{
+    ViewBag.Title = "APT Groups";
+}
+
+<h2>APT Groups</h2>
+
+<p>
+    <a asp-action="Create">Create New Group</a> |
+    <a asp-action="JsonImport">Import JSON</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Sector</th>
+            <th>IsFinancial</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model)
+        {
+            <tr>
+                <td>@group.Id</td>
+                <td>@group.Name</td>
+                <td>@group.Sector</td>
+                <td>@group.IsFinancial</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@group.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@group.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

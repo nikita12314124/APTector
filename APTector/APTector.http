@@ -1,0 +1,6 @@
+@APTector_HostAddress = http://localhost:5105
+
+GET {{APTector_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

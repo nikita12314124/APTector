@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "JSON Import";
+}
+
+<h2>Import JSON Data</h2>
+
+<form method="post" asp-action="JsonImport">
+    <textarea name="jsonContent" rows="10" cols="80"></textarea>
+    <br />
+    <button type="submit">Import</button>
+</form>
+
+@if (!string.IsNullOrEmpty((string)ViewBag.Message))
+{
+    <p>@ViewBag.Message</p>
+}

@@ -1,0 +1,27 @@
+﻿@model APTector.Models.Tactic
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewBag.Title = "Edit Tactic";
+    var matrices = ViewBag.Matrices as List<APTector.Models.Matrix>;
+}
+
+<h2>Edit Tactic</h2>
+
+<form method="post" asp-action="Edit" asp-route-id="@Model.Id">
+    <div>
+        <label>Tactic Id:</label>
+        <input asp-for="Id" readonly="readonly" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label>Matrix:</label>
+        <select asp-for="MatrixId" asp-items="@(new SelectList(matrices, "Id", "MatrixName"))">
+            <option value="">-- Select Matrix --</option>
+        </select>
+    </div>
+    <button type="submit">Save</button>
+</form>

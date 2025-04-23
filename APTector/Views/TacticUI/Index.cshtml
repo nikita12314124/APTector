@@ -1,0 +1,38 @@
+﻿@model List<APTector.Models.Tactic>
+
+@{
+    ViewBag.Title = "Tactics List";
+}
+
+<h2>Tactics</h2>
+
+<p>
+    <a asp-action="Create">Create New Tactic</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>MatrixId</th>
+            <th>MatrixName</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tactic in Model)
+        {
+            <tr>
+                <td>@tactic.Id</td>
+                <td>@tactic.Name</td>
+                <td>@tactic.MatrixId</td>
+                <td>@tactic.Matrix?.MatrixName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@tactic.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@tactic.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
